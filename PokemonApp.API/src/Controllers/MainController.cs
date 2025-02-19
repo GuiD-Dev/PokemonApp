@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace PokemonApp.src;
 
@@ -41,17 +42,17 @@ public class MainController : Controller
         return Ok(trainers);
     }
 
-    // [HttpPost("insertTrainer")]
-    // public IActionResult InsertTrainer([FromBody] TrainerDto trainerDto)
-    // {
-    //     var trainer = _trainerService.AddTrainer(trainerDto).Result;
-    //     return Ok(trainer);
-    // }
+    [HttpPost("insertTrainer")]
+    public IActionResult InsertTrainer([FromBody] TrainerDto trainerDto)
+    {
+        var trainer = _trainerService.AddTrainer(trainerDto).Result;
+        return Ok(trainer);
+    }
 
-    // [HttpGet("listFromAPI")]
-    // public IActionResult ListFromAPI()
-    // {
-    //     _pokemonService.GetPokemonsFromAPI();
-    //     return Ok();
-    // }
+    [HttpGet("listFromAPI")]
+    public IActionResult ListFromAPI()
+    {
+        var teste = _pokemonService.GetPokemonsFromAPI().Result;
+        return Ok(JsonConvert.SerializeObject(teste));
+    }
 }
