@@ -1,4 +1,4 @@
-using PokemonApp.src;
+namespace PokemonApp.Domain;
 
 public class Pokemon
 {

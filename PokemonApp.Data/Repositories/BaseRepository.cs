@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace PokemonApp.src;
+namespace PokemonApp.Data;
 
 public class BaseRepository<T> : IBaseRepository<T> where T : class
 {

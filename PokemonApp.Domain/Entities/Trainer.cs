@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
 
+namespace PokemonApp.Domain;
+
 public class Trainer
 {
     public int Id { get; set; }

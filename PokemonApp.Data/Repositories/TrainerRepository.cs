@@ -1,4 +1,6 @@
-namespace PokemonApp.src;
+using PokemonApp.Domain;
+
+namespace PokemonApp.Data;
 
 public class TrainerRepository : BaseRepository<Trainer>, ITrainerRepository
 {

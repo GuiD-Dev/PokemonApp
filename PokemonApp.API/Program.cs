@@ -1,4 +1,5 @@
-using PokemonApp.src;
+using PokemonApp.Aplication;
+using PokemonApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

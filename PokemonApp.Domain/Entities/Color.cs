@@ -1,4 +1,4 @@
-namespace PokemonApp.src;
+namespace PokemonApp.Domain;
 
 public enum Color
 {

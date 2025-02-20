@@ -1,6 +1,8 @@
 using Newtonsoft.Json;
+using PokemonApp.Data;
+using PokemonApp.Domain;
 
-namespace PokemonApp.src;
+namespace PokemonApp.Aplication;
 
 public class PokemonService : IPokemonService
 {

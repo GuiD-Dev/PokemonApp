@@ -1,4 +1,4 @@
-namespace PokemonApp.src;
+namespace PokemonApp.Data;
 
 public record TrainerDto
 {

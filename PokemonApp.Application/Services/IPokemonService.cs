@@ -1,4 +1,6 @@
-namespace PokemonApp.src;
+using PokemonApp.Domain;
+
+namespace PokemonApp.Aplication;
 
 public interface IPokemonService
 {

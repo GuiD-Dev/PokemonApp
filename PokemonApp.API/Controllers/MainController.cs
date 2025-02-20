@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using PokemonApp.Aplication;
+using PokemonApp.Data;
+using PokemonApp.Domain;
 
-namespace PokemonApp.src;
+namespace PokemonApp.API;
 
 [Route("[controller]")]
 public class MainController : Controller

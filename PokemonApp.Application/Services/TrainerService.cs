@@ -1,4 +1,7 @@
-namespace PokemonApp.src;
+using PokemonApp.Data;
+using PokemonApp.Domain;
+
+namespace PokemonApp.Aplication;
 
 public class TrainerService : ITrainerService
 {
