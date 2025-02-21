@@ -14,15 +14,6 @@ var app = builder.Build();
 
 app.MapControllers();
 
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<Context>();
-
-    if (!dbContext.Database.CanConnect()) throw new Exception("Can't connect to the database");
-
-    dbContext.Database.EnsureCreated();
-}
-
 app.MapGet("/pokemons/grouped", (IPokemonService service) =>
 {
     var result = service.GetPokemonsGroupedByColor();
