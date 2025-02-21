@@ -3,7 +3,7 @@ using PokemonApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<Context>();
+builder.Services.AddDbContext<MysqlContext>();
 builder.Services.AddScoped<IPokemonService, PokemonService>();
 builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 builder.Services.AddScoped<ITrainerService, TrainerService>();

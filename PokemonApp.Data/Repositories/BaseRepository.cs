@@ -4,10 +4,10 @@ namespace PokemonApp.Data;
 
 public class BaseRepository<T> : IBaseRepository<T> where T : class
 {
-    protected readonly Context _context;
+    protected readonly MysqlContext _context;
     private readonly DbSet<T> _dbSet;
 
-    public BaseRepository(Context context) {
+    public BaseRepository(MysqlContext context) {
         _context = context;
         _dbSet = context.Set<T>();
     }

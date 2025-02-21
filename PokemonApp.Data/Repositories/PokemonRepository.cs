@@ -5,7 +5,7 @@ namespace PokemonApp.Data;
 
 public class PokemonRepository : BaseRepository<Pokemon>, IPokemonRepository
 {
-    public PokemonRepository(Context context) : base(context) { }
+    public PokemonRepository(MysqlContext context) : base(context) { }
 
     public IEnumerable<Pokemon> GetAll()
     {

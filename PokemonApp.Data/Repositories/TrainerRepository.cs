@@ -4,7 +4,7 @@ namespace PokemonApp.Data;
 
 public class TrainerRepository : BaseRepository<Trainer>, ITrainerRepository
 {
-    public TrainerRepository(Context context) : base(context) { }
+    public TrainerRepository(MysqlContext context) : base(context) { }
 
     public IEnumerable<Trainer> GetAll()
     {
