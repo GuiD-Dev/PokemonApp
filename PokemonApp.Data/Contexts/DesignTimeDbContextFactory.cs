@@ -1,15 +1,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace PokemonApp.Data;
 
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<MysqlContext>
 {
+    private readonly IConfiguration _configuration;
+
+    public DesignTimeDbContextFactory(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
     public MysqlContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<MysqlContext>();
-        optionsBuilder.UseMySQL("Server=localhost;Database=pokedb;User=pokeuser;Password=pokepass;Port=3306;");
+        optionsBuilder.UseMySQL(_configuration.GetConnectionString("DefaultConnection"));
 
-        return new MysqlContext(optionsBuilder.Options);
+        return new MysqlContext(optionsBuilder.Options, _configuration);
     }
 }
