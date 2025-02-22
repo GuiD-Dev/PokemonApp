@@ -1,6 +1,7 @@
-using System.Threading.Tasks;
 using Moq;
-using PokemonApp.src;
+using PokemonApp.Aplication;
+using PokemonApp.Data;
+using PokemonApp.Domain;
 
 namespace PokemonTests;
 
