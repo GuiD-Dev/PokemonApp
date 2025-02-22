@@ -7,7 +7,13 @@ namespace PokemonApp.Aplication;
 public class PokemonService : IPokemonService
 {
     private readonly IPokemonRepository _pokemonRepository;
-    public PokemonService(IPokemonRepository pokemonRepository) => _pokemonRepository = pokemonRepository;
+    private readonly HttpClient _httpClient;
+
+    public PokemonService(IPokemonRepository pokemonRepository, HttpClient httpClient)
+    {
+        _pokemonRepository = pokemonRepository;
+        _httpClient = httpClient;
+    }
 
     public IEnumerable<Pokemon> GetPokemonsByColor(Color color)
     {
@@ -21,12 +27,11 @@ public class PokemonService : IPokemonService
 
     public async Task<IEnumerable<PokeListByColor>> GetPokemonsFromAPI()
     {
-        using var client = new HttpClient();
-        var respose = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon?limit=100");
+        var respose = await _httpClient.GetAsync($"https://pokeapi.co/api/v2/pokemon?limit=100");
         var resultado = JsonConvert.DeserializeObject<PokeResult>(await respose.Content.ReadAsStringAsync());
         var tasks = resultado.results.Select(async poke =>
         {
-            var pokeResponse = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon-species/{poke.name}");
+            var pokeResponse = await _httpClient.GetAsync($"https://pokeapi.co/api/v2/pokemon-species/{poke.name}");
             var pokemon = JsonConvert.DeserializeObject<Poke>(await pokeResponse.Content.ReadAsStringAsync());
             return pokemon;
         });

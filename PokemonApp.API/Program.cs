@@ -8,6 +8,7 @@ builder.Services.AddScoped<IPokemonService, PokemonService>();
 builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 builder.Services.AddScoped<ITrainerService, TrainerService>();
 builder.Services.AddScoped<ITrainerRepository, TrainerRepository>();
+builder.Services.AddHttpClient<IPokemonService, PokemonService>();
 builder.Services.AddControllers();
 
 var app = builder.Build();
