@@ -55,7 +55,7 @@ public class MainController : Controller
     [HttpGet("listFromAPI")]
     public IActionResult ListFromAPI()
     {
-        var teste = _pokemonService.GetPokemonsFromAPI().Result;
-        return Ok(JsonConvert.SerializeObject(teste));
+        var pokemons = _pokemonService.GetPokemonsFromAPI().Result;
+        return Ok(JsonConvert.SerializeObject(pokemons));
     }
 }

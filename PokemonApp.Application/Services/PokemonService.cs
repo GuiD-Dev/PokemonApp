@@ -25,18 +25,24 @@ public class PokemonService : IPokemonService
         return _pokemonRepository.GetPokemonsGroupedBy(p => p.Color);
     }
 
-    public async Task<IEnumerable<PokeListByColor>> GetPokemonsFromAPI()
+    public async Task<Dictionary<string, List<string>>> GetPokemonsFromAPI()
     {
         var respose = await _httpClient.GetAsync($"https://pokeapi.co/api/v2/pokemon?limit=100");
-        var resultado = JsonConvert.DeserializeObject<PokeResult>(await respose.Content.ReadAsStringAsync());
-        var tasks = resultado.results.Select(async poke =>
+        var pokeResponse = JsonConvert.DeserializeObject<PokeAPIResponse>(await respose.Content.ReadAsStringAsync());
+
+        var tasks = pokeResponse.results.Select(async poke =>
         {
-            var pokeResponse = await _httpClient.GetAsync($"https://pokeapi.co/api/v2/pokemon-species/{poke.name}");
-            var pokemon = JsonConvert.DeserializeObject<Poke>(await pokeResponse.Content.ReadAsStringAsync());
+            var specieResponse = await _httpClient.GetAsync($"https://pokeapi.co/api/v2/pokemon-species/{poke.name}");
+            var pokemon = JsonConvert.DeserializeObject<PokeSpecie>(await specieResponse.Content.ReadAsStringAsync());
             return pokemon;
         });
 
-        var teste = await Task.WhenAll(tasks);
-        return teste.GroupBy(r => r.color.name).Select(g => new PokeListByColor { Color = g.Key, Pokemons = g.Select(p => p.name) });
+        var pokeSpecies = await Task.WhenAll(tasks);
+
+        return pokeSpecies.GroupBy(r => r.color.name)
+            .ToDictionary(
+                g => g.Key,
+                g => g.Select(p => p.name).ToList()
+            );
     }
 }

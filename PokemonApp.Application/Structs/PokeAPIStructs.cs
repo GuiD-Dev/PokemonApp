@@ -1,12 +1,12 @@
 namespace PokemonApp.Aplication;
 
 
-public struct PokeResult
+public struct PokeAPIResponse
 {
-    public List<Poke> results { get; set; }
+    public List<PokeSpecie> results { get; set; }
 }
 
-public struct Poke
+public struct PokeSpecie
 {
     public string name { get; set; }
     public PokeColor color { get; set; }
